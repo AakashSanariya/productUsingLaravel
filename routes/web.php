@@ -12,4 +12,6 @@
 */
 
 Route::get('/', 'ProductController@categoryDisplay');
-Route::post('recorddisplay', 'ProductController@index');
+/*For displaying Ajax Fetch Records*/
+Route::post('recorddisplay', 'ProductController@displayRecord');
+Route::resource('addproduct', 'ProductController');

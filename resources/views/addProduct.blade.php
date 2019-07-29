@@ -21,8 +21,10 @@
                 <div class="form-group">
                     <h4 class="box-info">Select Category</h4>
                     <select class="form-control select2" id="category">
+                        <option selected>Select Category</option>
+                        {{ $categoryName }}
                         @foreach($categoryName as $category)
-                            <option value="{{ $category['id'] }}" selected>{{ $category['name'] }}</option>
+                            <option value="{{ $category['id'] }}">{{ $category['name'] }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -32,6 +34,7 @@
     <div id="record"></div>
 @endsection
 @section('scripts')
+    <!-- For Selecting dropdown and display Product -->
     <script type="text/javascript">
         $(function(){
             $("#category").change(function () {
@@ -41,11 +44,12 @@
                     type: 'POST',
                     data: {categoryId: categoryId, "_token": "{{ csrf_token() }}" },
                     success: function (data) {
-                        alert(data);
-                        $("#reord").html(data);
+                        $("#record").html(data);
                     }
                 });
             });
         });
     </script>
 @endsection
+
+

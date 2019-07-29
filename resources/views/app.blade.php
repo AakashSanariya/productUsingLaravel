@@ -20,6 +20,7 @@
         <link rel="stylesheet" href="{{ asset("css/bootstrap-datepicker.min.css") }}">
         <!-- Daterange picker -->
         <link rel="stylesheet" href="{{ asset("css/daterangepicker.css") }}">
+        @yield('css')
     {{--CSS Over--}}
 
     {{--Script Start--}}
