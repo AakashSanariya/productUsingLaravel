@@ -51,6 +51,8 @@
                         <th>MRP</th>
                         <th>BatchNo</th>
                         <th>Weight</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -65,6 +67,8 @@
                             <td>{{ $products['ProductInformation']['mrp'] ? $products['ProductInformation']['mrp'] : 'Pending' }}</td>
                             <td>{{ $products['ProductInformation']['batchNo'] ? $products['ProductInformation']['batchNo'] : 'Pending' }}</td>
                             <td>{{ $products['ProductInformation']['weight'] ? $products['ProductInformation']['weight'] : 'Pending' }}</td>
+                            <td><button class="btn btn-primary">Edit</button></td>
+                            <td><button class="btn btn-danger">Delete</button></td>
                         </tr>
                     @endforeach
                     </tbody>

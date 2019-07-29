@@ -27,6 +27,7 @@ class Product extends Model
 
     public static function addProduct($data){
         $product = Product::create($data);
+        $productDetails = $product->productInformation()->create();
         return $product;
     }
 
