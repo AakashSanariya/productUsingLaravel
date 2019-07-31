@@ -20,6 +20,8 @@
         <link rel="stylesheet" href="{{ asset("css/bootstrap-datepicker.min.css") }}">
         <!-- Daterange picker -->
         <link rel="stylesheet" href="{{ asset("css/daterangepicker.css") }}">
+        <!-- Select2 -->
+        <link rel="stylesheet" href="{{ asset("css/select2.min.css") }}">
         @yield('css')
     {{--CSS Over--}}
 
@@ -47,6 +49,8 @@
         <script src="{{ asset("js/daterangepicker.js") }}"></script>
         <!-- datepicker -->
         <script src="{{ asset("js/bootstrap-datepicker.min.js") }}"></script>
+        <!-- Select2 -->
+        <script src="{{ asset("js/select2.full.min.js") }}"></script>
         <!-- Bootstrap WYSIHTML5 -->
         <script src="{{ asset("js/bootstrap3-wysihtml5.all.min.js") }}"></script>
         <!-- AdminLTE App -->

@@ -78,10 +78,7 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        $productInfo = ProductInformation::getProductDetails($id);
-        $categoryID = $productInfo['0']['product']['categoryId'];
-        $category = Category::pluck('name', 'id')->toArray();
-        return view('addProduct')->with(compact('productInfo', 'categoryID', 'category'));
+        //
     }
 
     /**
@@ -90,9 +87,15 @@ class ProductController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request)
     {
-        //
+        if($request->ajax()){
+            $id = $request->id;
+            $productInfo = ProductInformation::getProductDetails($id);
+            $categoryID = $productInfo['0']['product']['categoryId'];
+            $category = Category::pluck('name', 'id')->toArray();
+            return view('editAjaxRecord')->with(compact('productInfo', 'categoryID', 'category'));
+        }
     }
 
     /**
