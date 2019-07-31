@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProductRequest;
 use App\Model\Category;
 use App\Model\Product;
+use App\Model\ProductInformation;
 use Illuminate\Http\Request;
+use phpDocumentor\Reflection\Types\Self_;
 use Symfony\Component\Console\Input\Input;
 
 /**
@@ -20,8 +21,9 @@ class ProductController extends Controller
      */
     public function categoryDisplay()
     {
-        $category = Category::all();
-        return view('addProduct', ['categoryName' => $category]);
+        $category = Category::pluck('name', 'id')->toArray();
+        $categoryID = "NULL";
+        return view('addProduct')->with(compact('category', 'categoryID'));
     }
 
     /**
@@ -33,7 +35,7 @@ class ProductController extends Controller
         $categoryId = $request->input('categoryId');
 
         $product = Product::getProductInformation($categoryId);
-        return view('ajaxrecordDisplay', ['product' => $product, 'categoryId' => $categoryId]);
+        return view('ajaxrecordDisplay')->with(compact('product', 'categoryId'))->render();
     }
 
     /**
@@ -64,7 +66,8 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $productDetails = Product::addProduct($request['product']);
-        return redirect('/');
+
+        return redirect('/')->with('flash_message_success', 'Add Product Successfully');
     }
 
     /**
@@ -75,7 +78,10 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+        $productInfo = ProductInformation::getProductDetails($id);
+        $categoryID = $productInfo['0']['product']['categoryId'];
+        $category = Category::pluck('name', 'id')->toArray();
+        return view('addProduct')->with(compact('productInfo', 'categoryID', 'category'));
     }
 
     /**
@@ -98,7 +104,8 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $productInfoUpdate = Product::updateProductInformation($request, $id);
+        return redirect('/')->with('flash_message_success','Details Update Successfully');
     }
 
     /**

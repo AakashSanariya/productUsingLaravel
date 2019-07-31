@@ -32,7 +32,7 @@
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="active"><a href="index.html"><i class="fa fa-circle-o"></i> Home</a></li>
+                    <li class="active"><a href="{{ url('/') }}"><i class="fa fa-circle-o"></i> Home</a></li>
                 </ul>
             </li>
         </ul>
