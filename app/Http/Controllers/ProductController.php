@@ -65,6 +65,10 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        $validate = $request->validate([
+            'product.name' => "required|max:50",
+            'product.sku' => "required|numeric",
+        ]);
         $productDetails = Product::addProduct($request['product']);
 
         return redirect('/')->with('flash_message_success', 'Add Product Successfully');
@@ -107,6 +111,17 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $validate = $request->validate([
+            'product.name' => 'required|max:50',
+            'product.sku' => 'required|numeric',
+            'product.price' => 'required|numeric',
+            'product.manuCity' => 'required|alpha',
+            'product.pincode' => 'required|numeric|min:5',
+            'product.gstNo' => 'required',
+            'product.mrp' => 'required|numeric',
+            'product.batchNo' => 'required',
+            'product.weight' => 'required|numeric'
+        ]);
         $productInfoUpdate = Product::updateProductInformation($request, $id);
         return redirect('/')->with('flash_message_success','Details Update Successfully');
     }

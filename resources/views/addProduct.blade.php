@@ -9,6 +9,15 @@
             <li class="active"></li>
         </ol>
     </section>
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     @if (Session::has('flash_message_success'))
         <div class="alert alert-success alert-block" id="flash">
             <button type="button" class="close" data-dismiss="alert">×</button>
@@ -60,6 +69,7 @@
 
             fetchData();
         });
+
         function fetchData(){
             var categoryId = document.getElementById('category').value;
             if(categoryId == "-1"){
